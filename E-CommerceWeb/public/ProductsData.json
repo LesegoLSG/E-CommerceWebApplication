@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "title": "Elegant Gold Necklace",
+    "category": "Jewellery",
+    "description": "A stunning 24k gold necklace with a beautiful pendant.",
+    "image":
+      "https://images.pexels.com/photos/5370640/pexels-photo-5370640.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "price": 250.0,
+    "status": "New Arrival",
+    "sale":10
+  },
+  {
+    "id": 2,
+    "title": "Stylish Leather Jacket",
+    "category": "Clothing",
+    "description": "A stylish black leather jacket perfect for any occasion.",
+    "image":
+      "https://images.pexels.com/photos/2112648/pexels-photo-2112648.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "price": 150.0,
+    "status": "Best Seller",
+    "sale":20
+  },
+  {
+    "id": 3,
+    "title": "Comfortable Running Shoes",
+    "category": "Shoes",
+    "description": "High-performance running shoes with superior cushioning.",
+    "image":
+      "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "price": 120.0,
+    "status": "New Arrival",
+    "sale":0
+  },
+  {
+    "id": 4,
+    "title": "Designer Handbag",
+    "category": "Bags",
+    "description": "A luxury handbag made from premium materials.",
+    "image":
+      "https://images.pexels.com/photos/904350/pexels-photo-904350.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "price": 350.0,
+    "status": "Best Seller",
+    "sale":0
+  },
+  {
+    "id": 5,
+    "title": "Classic Aviator Sunglasses",
+    "category": "Sunglasses",
+    "description": "Timeless aviator sunglasses with UV protection.",
+    "image":
+      "https://images.pexels.com/photos/343720/pexels-photo-343720.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "price": 80.0,
+    "status": "New Arrival",
+    "sale":20
+  },
+  {
+  "id": 6,
+  "title": "Silver Bracelet",
+    "category": "Jewellery",
+    "description": "A sleek and stylish silver bracelet for any outfit.",
+    "image":
+      "https://images.pexels.com/photos/5442465/pexels-photo-5442465.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "price": 75.0,
+    "status": "Best Seller",
+    "sale":0
+  },
+  {
+    "id": 7,
+    "title": "Casual T-Shirt",
+    "category": "Clothing",
+    "description": "A comfortable cotton t-shirt available in various colors.",
+    "image":
+      "https://images.pexels.com/photos/2062324/pexels-photo-2062324.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "price": 25.0,
+    "status": "New Arrival",
+    "sale":0
+  },
+  {
+    "id": 8,
+    "title": "Elegant High Heels",
+    "category": "Shoes",
+    "description": "Chic high heels for a night out or special event.",
+    "image":
+      "https://images.pexels.com/photos/601177/pexels-photo-601177.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "price": 90.0,
+    "status": "Best Seller",
+    "sale":0
+  },
+  {
+    "id": 9,
+    "title": "Leather Tote Bag",
+    "category": "Bags",
+    "description": "A spacious leather tote bag for everyday use.",
+    "image":
+      "https://images.pexels.com/photos/1038000/pexels-photo-1038000.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "price": 200.0,
+    "status": "New Arrival",
+    "sale":0
+  },
+  {
+    "id": 10,
+    "title": "Polarized Sunglasses",
+    "category": "Sunglasses",
+    "description": "Polarized sunglasses for crystal clear vision.",
+    "image":
+      "https://images.pexels.com/photos/6858597/pexels-photo-6858597.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "price": 95.0,
+    "status": "Best Seller",
+    "sale":0
+  }
+]

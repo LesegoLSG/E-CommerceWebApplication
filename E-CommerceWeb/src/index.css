@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .button{
+    @apply bg-Black hover:bg-Purple px-6 py-2 text-white font-semibold rounded-sm
+  }
+
+  .title{
+    @apply text-3xl font-semibold capitalize text-center my-8
+  }
+
+  .subheading{
+    @apply text-xl font-semibold text-black
+  }
+
+  .inputField{
+    @apply  border-b-2 border-Black py-2 px-4 outline-none hover:border-[#871ff0]
+  }
+}
