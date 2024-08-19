@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Banner from "./Banner";
 import Category from "./Category";
-import Products from "../Products/Products";
-import BestSeller from "../BestSeller/BestSeller";
-import ContactUs from "../Contact/ContactUs";
+import Products from "../../Components/Products/Products";
+import BestSeller from "../../Components/BestSeller/BestSeller";
+import ContactUs from "../../Components/Contact/ContactUs";
 import Footer from "../../Components/Footer/Footer";
 
 const Home = () => {

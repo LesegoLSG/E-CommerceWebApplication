@@ -18,4 +18,7 @@
   .inputField{
     @apply  border-b-2 border-Black py-2 px-4 outline-none hover:border-[#871ff0]
   }
+  .authInputField{
+    @apply w-full h-10 rounded-md border border-gray-600
+  }
 }

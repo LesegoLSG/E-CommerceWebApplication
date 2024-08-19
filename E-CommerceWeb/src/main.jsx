@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home/Home.jsx";
 import ShopProduct from "./Pages/ShopProduct/ShopProduct.jsx";
 import Checkout from "./Pages/Checkout/Checkout.jsx";
+import Login from "./Pages/Login/Login.jsx";
+import CustomerRegistration from "./Pages/Registration/CustomerRegistration.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <Checkout />,
+      },
+      {
+        path: "/Login",
+        element: <Login />,
+      },
+      {
+        path: "/customer-registration",
+        element: <CustomerRegistration />,
       },
     ],
   },

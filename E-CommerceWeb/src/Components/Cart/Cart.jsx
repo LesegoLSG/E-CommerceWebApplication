@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
@@ -12,24 +12,28 @@ const Cart = ({ isOpen, onClose }) => {
       id: 1,
       image: "https://via.placeholder.com/150",
       description: "Sample Product 1 testing to check if it works.",
-      price: "$20.00",
+      price: "R20.00",
       quantity: 1,
     },
     {
       id: 2,
       image: "https://via.placeholder.com/150",
       description: "Sample Product 2",
-      price: "$15.00",
+      price: "R15.00",
       quantity: 2,
     },
     {
       id: 3,
       image: "https://via.placeholder.com/150",
       description: "Sample Product 3",
-      price: "$18.00",
+      price: "R18.00",
       quantity: 3,
     },
   ];
+
+  const increaseQuantity = (qua) => {
+    qua = qua + 1;
+  };
 
   const handleClose = () => {
     navigate("/");
@@ -74,10 +78,14 @@ const Cart = ({ isOpen, onClose }) => {
                   </td>
                   <td className="py-2 px-4">{item.description}</td>
                   <td className="py-2 px-4">{item.price}</td>
-                  <td className="py-2 px-4 flex justify-center items-center gap-x-2">
-                    <FaCirclePlus size={20} className="cursor-pointer" />
-                    {item.quantity}
+                  <td className="py-2 px-4 w-full h-full flex justify-center items-center gap-x-2">
                     <FaCircleMinus size={20} className="cursor-pointer" />
+                    {item.quantity}
+                    <FaCirclePlus
+                      size={20}
+                      className="cursor-pointer"
+                      onClick={() => increaseQuantity(item.quantity)}
+                    />
                   </td>
                 </tr>
               ))}

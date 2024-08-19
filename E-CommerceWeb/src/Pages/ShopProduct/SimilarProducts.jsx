@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import ProductCard from "../Products/ProductCard";
+import ProductCard from "../../Components/Products/ProductCard";
 
 const SimilarProducts = ({ category, productList }) => {
   const similarProducts = productList.filter(

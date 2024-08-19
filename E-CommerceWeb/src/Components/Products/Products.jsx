@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaFilter } from "react-icons/fa";
 import ProductCard from "./ProductCard";
-import Pagination from "../../Components/Reusables/Pagination";
+import Pagination from "../Reusables/Pagination";
 
 const Products = () => {
   const [products, setProducts] = useState([]);

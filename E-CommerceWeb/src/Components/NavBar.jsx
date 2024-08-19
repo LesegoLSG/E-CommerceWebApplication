@@ -72,12 +72,12 @@ const NavBar = ({ onOpenCart }) => {
           className="text-lg text-Black sm:flex items-center gap-x-8 hidden"
           onClick={onOpenCart}
         >
-          <a href="/" className="flex items-center gap-2">
+          <a href="/Login" className="flex items-center gap-2">
             <FaRegUser />
             Login
           </a>
 
-          <button className="flex items-center gap-2">
+          <button className="flex items-center gap-2" onClick={onOpenCart}>
             <span className="w-6 h-6 rounded-full bg-red-600 flex justify-center items-center text-xl font-semibold text-white">
               0
             </span>
