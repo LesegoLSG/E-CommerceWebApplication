@@ -2,23 +2,23 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "./Components/NavBar";
 import Cart from "./Components/Cart/Cart";
-
+import { useModal } from "./Context/ModalContext";
+import CustomerRegistrationModal from "./Components/Registration/CustomerRegistrationModal";
+import Login from "./Components/Login/Login";
+import Footer from "./Components/Footer/Footer";
 function App() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { isCartOpen, isRegisterOpen, isLoginOpen } = useModal();
 
-  const handleOpenCart = () => {
-    setIsCartOpen(true);
-  };
-
-  const handleCloseCart = () => {
-    setIsCartOpen(false);
-  };
-
+  console.log("APP isCartOpen", isCartOpen);
+  console.log("APP isRegisterOpen", isCartOpen);
   return (
     <>
-      <NavBar onOpenCart={handleOpenCart} />
+      <NavBar />
       <Outlet />
-      <Cart isOpen={isCartOpen} onClose={handleCloseCart} />
+      {isCartOpen && <Cart />}
+      {isRegisterOpen && <CustomerRegistrationModal />}
+      {isLoginOpen && <Login />}
+      <Footer />
     </>
   );
 }

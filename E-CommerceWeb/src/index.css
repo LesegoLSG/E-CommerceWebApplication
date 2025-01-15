@@ -4,15 +4,31 @@
 
 @layer components{
   .button{
-    @apply bg-Black hover:bg-Purple px-6 py-2 text-white font-semibold rounded-sm
+    @apply min-w-40 bg-green-400 hover:bg-green-600 px-6 py-2 text-white font-semibold rounded-lg
   }
 
-  .title{
-    @apply text-3xl font-semibold capitalize text-center my-8
+  /* .title{
+    @apply text-3xl font-semibold capitalize 
   }
 
   .subheading{
+    @apply text-lg font-semibold text-black
+  } */
+
+  .h1{
+    @apply text-2xl font-semibold text-black
+  }
+  .h2{
     @apply text-xl font-semibold text-black
+  }
+  .h3{
+    @apply text-lg font-semibold text-black
+  }
+  .h4{
+    @apply text-base font-semibold text-black
+  }
+  .h5{
+    @apply text-sm font-semibold text-black
   }
 
   .inputField{

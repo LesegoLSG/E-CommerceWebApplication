@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import brand from "../../assets/BrandLogo/brand.jpg";
+import chopard from "../../assets/BrandLogo/chopard.png";
+import nike from "../../assets/BrandLogo/nike.png";
+import adidas from "../../assets/BrandLogo/adidas.png";
+import BUCCELLATI from "../../assets/BrandLogo/BUCCELLATI.png";
+import puma from "../../assets/BrandLogo/puma.png";
 import MainDisplayImage from "../../assets/MainDisplayProductImages/MainDisplayImage.jpg";
 import fashionableShoes from "../../assets/MainDisplayProductImages/fashionableShoes.jpg";
 import MainNecklace from "../../assets/MainDisplayProductImages/MainNecklace.jpg";
@@ -8,11 +12,11 @@ import MainBag from "../../assets/MainDisplayProductImages/MainBag.jpg";
 import VariousProducts from "../../assets/MainDisplayProductImages/VariousProducts.jpg";
 
 const companyLogo = [
-  { id: 1, image: brand },
-  { id: 2, image: brand },
-  { id: 3, image: brand },
-  { id: 4, image: brand },
-  { id: 5, image: brand },
+  { id: 1, image: nike },
+  { id: 2, image: adidas },
+  { id: 3, image: puma },
+  { id: 4, image: BUCCELLATI },
+  { id: 5, image: chopard },
 ];
 
 const ProductDisplay = [
@@ -53,7 +57,7 @@ const Category = () => {
   const subImages = ProductDisplay.slice(1); // Remaining items for sub images
 
   return (
-    <div className="max-w-screen-2xl mx-auto container xl:px-28 px-4 py-28">
+    <div className="max-w-screen-2xl mx-auto container xl:px-28 xl:pt-0 px-4 py-8">
       {/* Category brands */}
       <div className="flex justify-around items-center flex-wrap gap-4 py-5">
         {companyLogo.map(({ id, image, message }) => (

@@ -1,23 +1,35 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { FaFilter } from "react-icons/fa";
 import ProductCard from "./ProductCard";
 import Pagination from "../Reusables/Pagination";
+import { useProducts } from "../../Context/ProductContext";
+import { useLoading } from "../../Context/LoadingContext";
+import LoadingSpinner from "../Reusables/LoadingSpinner/LoadingSpinner";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  const { products, setProducts } = useProducts();
+  const { isLoading, setIsLoading } = useLoading();
   const [filteredItems, setFilteredItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortOption, setSortOption] = useState("default");
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setIsLoading(true);
       try {
-        const response = await fetch("/ProductsData.json");
-        const data = await response.json();
+        const response = await axios.get(
+          "http://localhost:9191/api/v1/products/all"
+        );
+        const data = response.data.data;
         setProducts(data);
         setFilteredItems(data); // Initialize filteredItems with the fetched data
+        console.log("message: ", response.data.message);
+        console.log("data:", response.data.data);
+        setIsLoading(false);
       } catch (error) {
-        console.log("Could not fetch data: ", error);
+        setIsLoading(false);
+        console.log(data.response.message);
       }
     };
     fetchProducts();
@@ -85,7 +97,8 @@ const Products = () => {
       className="max-w-screen-2xl  container mx-auto xl:px-28 px-4 mb-12"
       id="shopping"
     >
-      <h2 className="title">Shop Our Awesome Products</h2>
+      {isLoading && <LoadingSpinner />}
+      <h2 className="h1">Shop Our Awesome Products</h2>
 
       <div>
         <div className="flex flex-col md:flex-row flex-wrap md:justify-between items-center space-y-3 mb-8">

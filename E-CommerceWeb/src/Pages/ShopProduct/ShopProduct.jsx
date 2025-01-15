@@ -1,37 +1,56 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { FaStar } from "react-icons/fa";
+
 import SimilarProducts from "./SimilarProducts";
+
+import { useProducts } from "../../Context/ProductContext";
+import MainBag from "../../assets/MainDisplayProductImages/MainBag.jpg";
+import ShopProductInfo from "./ProductInfo/ShopProductInfo";
+import ShopProductDetails from "./ProductDetails/ShopProductDetails";
+import ShopProductReviews from "./Reviews/ShopProductReviews";
+import ShopProductMainInfo from "./MainProductInfo/ShopProductMainInfo";
+import Gallery from "./Gallery/Gallery";
+import AxiosPublicInstance from "../../Authentication/AxiosInstances/AxiosPublicInstance";
 
 const ShopProduct = () => {
   const { id } = useParams();
-  const [products, setProducts] = useState([]);
-  const [allProducts, setAllProduct] = useState([]);
+  const { products } = useProducts();
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  // Define your backend's base URL here
+  const backendBaseUrl = "http://localhost:9191";
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("/ProductsData.json");
-        const data = await response.json();
-        const product = data.filter((p) => p.id == id);
-        console.log("Product:", product);
-        setAllProduct(data);
-        setProducts(product[0]);
-      } catch (error) {
-        console.log("Could not fetch data: ", error);
-      }
-    };
-    fetchProducts();
+    // Find the product with the matching id
+    const foundProduct = products.find(
+      (product) => product.id === parseInt(id)
+    );
+    if (foundProduct) {
+      setSelectedProduct(foundProduct);
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [id]);
+  });
 
-  const { title, category, price, image, status } = products;
+  if (!selectedProduct) {
+    return <p>Loading product...</p>; // Return a loading state or a message if the product isn't found yet
+  }
+
+  // Ensure images array exists before passing it to Gallery
+  const imageUrls = selectedProduct.images
+    ? selectedProduct.images.map(
+        (image) => `${backendBaseUrl}${image.downloadUrl}`
+      )
+    : [];
+
+  const imageList = [
+    "https://via.placeholder.com/300", // Replace with actual image URLs
+    "https://via.placeholder.com/301",
+    "https://via.placeholder.com/302",
+    "https://via.placeholder.com/303",
+  ];
 
   return (
-    <section
-      className="mt-28 max-screen-2xl container mx-auto xl:px-28 px-4"
-      id=""
-    >
+    <section className=" max-screen-2xl container mx-auto xl:px-28 px-2" id="">
       <div className="p-3 max-w-7xl m-auto">
         <div>
           <a href="/" className="text-gray-800">
@@ -41,56 +60,28 @@ const ShopProduct = () => {
             /Shop
           </a>
         </div>
-        <div className="mt-6 sm:mt-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-6 h-max ">
-            {/* Image */}
-            <div>
-              <img src={image} alt="ShopProductImage" className="w-full" />
-            </div>
-
-            {/* Product details */}
-            <div>
-              <h1 className="title text-left">{title}</h1>
-              <p className="mt-3 text-gray-600 text-base leading-6 text-justify sm:text-left sm:mt-4 ">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                fugit saepe molestias. Veniam voluptatem sit assumenda commodi
-                repellendus qui eius ullam ad atque, quos quis, exercitationem
-                blanditiis veritatis facere? Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Quod, velit nobis modi eaque
-                repellat, nihil ex atque fugiat autem consectetur veniam ad odio
-                sequi, ducimus culpa. Aperiam ut mollitia sequi?
-              </p>
-              <span className="my-2 text-xl text-yellow-500 flex items-center gap-1 sn:my-4">
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-              </span>
-
-              <h2 className="text-xl text-Black font-semibold sm:text-2xl">
-                R{price}
-              </h2>
-              <div>
-                <div className="mt-4">
-                  <label className="font-semibold">Quantity</label>
-                  <input
-                    type="number"
-                    name="price"
-                    id="price"
-                    defaultValue={1}
-                    min={1}
-                    required
-                    className="py-2 px-4 items-center border-Black border-2 text-sm font-semibold mb-1 max-w-full w-full outline-none rounded-lg"
-                  />
-                </div>
-                <button className="button">Add to cart</button>
-              </div>
-            </div>
+        <div className="w-full min-h-screen flex flex-col md:flex-row  my-4">
+          {/* image section */}
+          <div className="w-full md:w-1/3 h-auto space-y-2 md:sticky top-2 self-start">
+            <Gallery images={imageUrls} />
+          </div>
+          {/* Information Section */}
+          <div className="w-full md:w-2/3 h-auto md:px-6 space-y-6">
+            {/* Main Information component */}
+            <ShopProductMainInfo selectedProduct={selectedProduct} />
+            {/* Information Component */}
+            <ShopProductInfo />
+            {/* Details Component */}
+            <ShopProductDetails />
+            {/*Reviews*/}
+            <ShopProductReviews selectedProduct={selectedProduct} id={id} />
           </div>
         </div>
       </div>
-      <SimilarProducts category={category} productList={allProducts} />
+      {/* <SimilarProducts
+        category={selectedProduct.category.name}
+        productList={allProducts}
+      /> */}
     </section>
   );
 };

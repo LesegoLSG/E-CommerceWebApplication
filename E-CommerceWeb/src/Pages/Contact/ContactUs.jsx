@@ -1,24 +1,33 @@
 import React from "react";
 import { FaWhatsapp, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import GoogleInput from "../../Components/Reusables/GoogleInput";
+import GoogleInputTextArea from "../../Components/Reusables/GoogleInputTextArea";
 
 const ContactUs = () => {
   return (
     <section
-      className="max-w-screen-2xl container mx-auto xl:px-28 px-4 "
+      className="max-w-screen-2xl min-h-screen container mx-auto flex flex-col items-center xl:px-28 px-4 py-4"
       id="contact-section"
     >
-      <h1 className="title">Contact Us</h1>
+      <div className="w-full flex justify-start">
+        <a href="/" className="text-gray-800">
+          Home
+        </a>
+        <a href="#" className="text-Black font-semibold">
+          /Contact
+        </a>
+      </div>
+      <div className="flex justify-center items-center my-6">
+        <h1 className="title">Contact Us</h1>
+      </div>
+
       <div className="w-full flex flex-col md:flex-row gap-16 justify-center items-center">
         <h1 className="title w-full md:w-1/2">Let's Get In Touch</h1>
         {/* Contact form */}
-        <div className="w-full h-auto flex flex-col gap-y-6">
-          <input type="text" placeholder="Full Name" className="inputField" />
-          <input
-            type="email"
-            placeholder="Email Address"
-            className="inputField"
-          />
-          <textarea placeholder="Message" className="inputField min-h-52" />
+        <div className="w-full h-auto flex flex-col justify-center items-center gap-y-6 my-auto">
+          <GoogleInput placeholder="Full Name" />
+          <GoogleInput placeholder="Email Address" />
+          <GoogleInputTextArea placeholder="Message" />
           <button className="button">Send</button>
         </div>
         {/* Contact details */}

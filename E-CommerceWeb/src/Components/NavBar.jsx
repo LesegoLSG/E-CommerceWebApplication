@@ -2,14 +2,27 @@ import React, { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import Logo1 from "../assets/Logo1.png";
 import { FaRegUser } from "react-icons/fa";
+import { IoMdLogOut } from "react-icons/io";
+import { PiSignInFill } from "react-icons/pi";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useModal } from "../Context/ModalContext";
+import { useCart } from "../Context/CartContext";
+import ScrollToTop from "./Reusables/ScrollToTop/ScrollToTop";
+import { useAuthenticatedUser } from "../Authentication/AuthUserContext/AuthenticatedUserContext";
+import AuthService from "../Authentication/AuthService/AuthService";
+import ConfirmationBox from "./Reusables/Dialogs/ConfirmationBox";
 
-const NavBar = ({ onOpenCart }) => {
+const NavBar = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false); //Confirmation dialog
   const navigate = useNavigate();
+  const { authenticatedUser, setAuthenticatedUser } = useAuthenticatedUser();
   const location = useLocation();
+
+  const { handleOpenCart, handleOpenRegister, handleOpenLogin } = useModal();
+  const { cartItems } = useCart();
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -48,46 +61,104 @@ const NavBar = ({ onOpenCart }) => {
       sectionId: "/",
     },
     {
-      title: "Contact",
-      sectionId: "contact-section",
-    },
-    {
       title: "Craft",
       sectionId: "/",
     },
   ];
+
+  const navPageItems = [
+    {
+      title: "Contact",
+      pageToGo: "/contact",
+    },
+  ];
+
+  // Handle showing logout confirmation
+  const handleLogoutClick = () => {
+    setShowLogoutConfirmation(true);
+  };
+
+  // Handle confirming the logout
+  const handleLogoutConfirm = () => {
+    AuthService.logout(setAuthenticatedUser);
+    setShowLogoutConfirmation(false);
+    navigate("/"); // Redirect to home
+  };
+
+  // Handle canceling the logout
+  const handleLogoutCancel = () => {
+    setShowLogoutConfirmation(false);
+  };
+
   return (
     <header className="bg-primaryBG min-w-screen-2xl xl:px-28 px-4">
       <nav className="flex justify-between items-center container md:py-4 pt-6 pb-3">
-        {/* Search Icon */}
-        <IoSearchOutline className="text-Black w-5 h-5 cursor-pointer hidden md:block" />
-
-        {/* Logo */}
-        <a href="/">
-          <img src={Logo1} className="w-24" />
-        </a>
+        <div className="pt-4">
+          <ul className="lg:flex items-center justify-end text-Black hidden space-x-4">
+            {navItems.map(({ title, sectionId }) => (
+              <li
+                key={title}
+                className="hover:text-Purple cursor-pointer"
+                onClick={() => handleNavigation(sectionId)}
+              >
+                {title}
+              </li>
+            ))}
+            {navPageItems.map(({ title, pageToGo }) => (
+              <li
+                key={title}
+                className="hover:text-Purple cursor-pointer"
+                onClick={() => navigate(pageToGo)}
+              >
+                {title}
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {/* Account and shpping btn */}
-        <div
-          className="text-lg text-Black sm:flex items-center gap-x-8 hidden"
-          onClick={onOpenCart}
-        >
-          <a href="/Login" className="flex items-center gap-2">
-            <FaRegUser />
-            Login
-          </a>
+        <div className="text-lg text-Black sm:flex items-center gap-x-4 hidden">
+          {authenticatedUser ? (
+            <a
+              className="flex items-center cursor-pointer gap-2"
+              onClick={handleLogoutClick}
+            >
+              <IoMdLogOut /> Logout
+            </a>
+          ) : (
+            <div className="flex gap-2">
+              <a
+                className="flex items-center cursor-pointer gap-2"
+                onClick={handleOpenRegister}
+              >
+                <FaRegUser />
+                signup
+              </a>
+              <a
+                className="flex items-center cursor-pointer gap-2"
+                onClick={handleOpenLogin}
+              >
+                <PiSignInFill />
+                Login
+              </a>
+            </div>
+          )}
 
-          <button className="flex items-center gap-2" onClick={onOpenCart}>
-            <span className="w-6 h-6 rounded-full bg-red-600 flex justify-center items-center text-xl font-semibold text-white">
-              0
+          <button className="flex items-center gap-2" onClick={handleOpenCart}>
+            <span
+              className={`${
+                cartItems.length > 0 ? "bg-green-600" : "bg-red-600"
+              } w-6 h-6 rounded-full flex justify-center items-center text-xl font-semibold text-white`}
+            >
+              {cartItems.length}
             </span>
             <FaShoppingCart />
           </button>
         </div>
 
         {/* Navbar for small devices */}
-        <div className="sm:hidden flex gap-2">
-          <button className="flex items-center gap-2" onClick={onOpenCart}>
+        <div className="sm:hidden flex gap-2 sticky">
+          <button className="flex items-center gap-2" onClick={handleOpenCart}>
             <span className="w-6 h-6 rounded-full bg-red-600 flex justify-center items-center text-xl font-bold text-white">
               0
             </span>
@@ -102,22 +173,22 @@ const NavBar = ({ onOpenCart }) => {
           </button>
         </div>
       </nav>
-      <hr />
+      {/* Confirmation Box for Logout */}
+      {showLogoutConfirmation && (
+        <ConfirmationBox
+          message="Are you sure you want to logout?"
+          onConfirm={handleLogoutConfirm}
+          onCancel={handleLogoutCancel}
+        />
+      )}
 
-      {/* Category items*/}
-      <div className="pt-4">
-        <ul className="lg:flex items-center justify-between text-Black hidden">
-          {navItems.map(({ title, sectionId }) => (
-            <li
-              key={title}
-              className="hover:text-Purple"
-              onClick={() => handleNavigation(sectionId)}
-            >
-              {title}
-            </li>
-          ))}
-        </ul>
+      <div className="w-full bg-blue-200">
+        {/* Logo  */}
+        <a href="/">
+          <img src={Logo1} className="w-24" />
+        </a>
       </div>
+      <hr />
 
       {/* small screen Category items */}
       <div className="">
@@ -138,6 +209,7 @@ const NavBar = ({ onOpenCart }) => {
           ))}
         </ul>
       </div>
+      <ScrollToTop />
     </header>
   );
 };

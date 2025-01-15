@@ -2,53 +2,39 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
+import { useModal } from "../../Context/ModalContext";
+import { useCart } from "../../Context/CartContext";
+import { useAuthenticatedUser } from "../../Authentication/AuthUserContext/AuthenticatedUserContext";
 
-const Cart = ({ isOpen, onClose }) => {
+const Cart = () => {
   const navigate = useNavigate();
-
-  // Sample cart items
-  const cartItems = [
-    {
-      id: 1,
-      image: "https://via.placeholder.com/150",
-      description: "Sample Product 1 testing to check if it works.",
-      price: "R20.00",
-      quantity: 1,
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/150",
-      description: "Sample Product 2",
-      price: "R15.00",
-      quantity: 2,
-    },
-    {
-      id: 3,
-      image: "https://via.placeholder.com/150",
-      description: "Sample Product 3",
-      price: "R18.00",
-      quantity: 3,
-    },
-  ];
-
-  const increaseQuantity = (qua) => {
-    qua = qua + 1;
-  };
+  const { cartItems } = useCart();
+  const { authenticatedUser } = useAuthenticatedUser();
+  const { isCartOpen, handleCloseCart, handleOpenLogin } = useModal();
 
   const handleClose = () => {
     navigate("/");
-    onClose();
+    handleCloseCart();
+  };
+
+  const handleCheckout = () => {
+    if (authenticatedUser !== null) {
+      navigate("/checkout");
+      handleCloseCart();
+    } else {
+      handleOpenLogin();
+    }
   };
 
   return (
     <div
       className={`fixed top-0 right-0 h-full bg-white shadow-lg transition-transform duration-300 ${
-        isOpen ? "translate-x-0" : "translate-x-full z-50"
+        isCartOpen ? "translate-x-0" : "translate-x-full z-50"
       }`}
       onClick={handleClose}
     >
       <div
-        className="w-[85vw] md:w-[30vw] h-full bg-Black relative"
+        className="w-[95vw] md:w-[30vw] h-full bg-Black relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button onClick={handleClose} className="absolute top-4 right-4">
@@ -113,9 +99,9 @@ const Cart = ({ isOpen, onClose }) => {
         <div className="w-full flex justify-center items-center my-12">
           <button
             className="bg-green-600 p-4 rounded-md text-white"
-            onClick={() => navigate("/checkout")}
+            onClick={() => handleCheckout()}
           >
-            Check Out
+            Checkout
           </button>
         </div>
       </div>

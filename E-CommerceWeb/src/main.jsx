@@ -6,8 +6,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home/Home.jsx";
 import ShopProduct from "./Pages/ShopProduct/ShopProduct.jsx";
 import Checkout from "./Pages/Checkout/Checkout.jsx";
-import Login from "./Pages/Login/Login.jsx";
-import CustomerRegistration from "./Pages/Registration/CustomerRegistration.jsx";
+import { ModalProvider } from "./Context/ModalContext.jsx";
+import OrderConfirmation from "./Pages/OrderPages/OrderConfirmation.jsx";
+import { ProductsProvider } from "./Context/ProductContext.jsx";
+import { CartProvider } from "./Context/CartContext.jsx";
+import ContactUs from "./Pages/Contact/ContactUs.jsx";
+import { LoadingProvider } from "./Context/LoadingContext.jsx";
+import { UserProvider } from "./Authentication/AuthUserContext/AuthenticatedUserContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,17 +32,27 @@ const router = createBrowserRouter([
         element: <Checkout />,
       },
       {
-        path: "/Login",
-        element: <Login />,
+        path: "/orderConfirmation",
+        element: <OrderConfirmation />,
       },
       {
-        path: "/customer-registration",
-        element: <CustomerRegistration />,
+        path: "/contact",
+        element: <ContactUs />,
       },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <UserProvider>
+    <ProductsProvider>
+      <CartProvider>
+        <LoadingProvider>
+          <ModalProvider>
+            <RouterProvider router={router} />
+          </ModalProvider>
+        </LoadingProvider>
+      </CartProvider>
+    </ProductsProvider>
+  </UserProvider>
 );

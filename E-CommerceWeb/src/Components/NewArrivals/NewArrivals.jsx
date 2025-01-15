@@ -24,11 +24,11 @@ const BestSeller = () => {
   console.log("New arrivals:", newArrivals);
   return (
     <section
-      className="max-w-screen-2xl container mx-auto xl:px-28 px-4 "
+      className="max-w-screen-2xl h-auto container mx-auto xl:px-28 px-4 my-4"
       id="new-arrivals"
     >
       <div className="text-center">
-        <h2 className="title">Our New Arrivals</h2>
+        <h2 className="h1">Our New Arrivals</h2>
         <p className="text-Black capitalize md:w-2/3 mx-auto mb-8">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
           veniam voluptate, ducimus quia iusto voluptatibus cum ipsam laudantium
@@ -36,44 +36,11 @@ const BestSeller = () => {
           facilis provident magnam nam.
         </p>
 
-        {/* Best seller Slider */}
-        <div className="mb-16 ">
-          <Swiper
-            // slidesPerView={4}
-            // spaceBetween={30}
-
-            centeredSlides={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            modules={[Autoplay, Pagination, Navigation]}
-            className="mySwiper"
-            breakpoints={{
-              640: {
-                slidesPerView: 1,
-                spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 30,
-              },
-              1024: {
-                slidesPerView: 4,
-                spaceBetween: 40,
-              },
-            }}
-          >
-            {newArrivals.map((item) => (
-              <SwiperSlide key={item.id}>
-                <ProductCard productItem={item} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+        {/* Product List */}
+        <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-1 items-center justify-center gap-12 shadow-sm">
+          {newArrivals.map((productItem) => (
+            <ProductCard key={productItem.id} productItem={productItem} />
+          ))}
         </div>
       </div>
     </section>
