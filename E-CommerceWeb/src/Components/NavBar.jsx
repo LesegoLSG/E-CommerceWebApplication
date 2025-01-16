@@ -94,11 +94,11 @@ const NavBar = () => {
     <header className="bg-primaryBG min-w-screen-2xl xl:px-28 px-4">
       <nav className="flex justify-between items-center container md:py-4 pt-6 pb-3">
         <div className="pt-4">
-          <ul className="lg:flex items-center justify-end text-Black hidden space-x-4">
+          <ul className="lg:flex items-center justify-end text-Black font-semibold hidden space-x-4">
             {navItems.map(({ title, sectionId }) => (
               <li
                 key={title}
-                className="hover:text-Purple cursor-pointer"
+                className="hover:text-Green cursor-pointer"
                 onClick={() => handleNavigation(sectionId)}
               >
                 {title}
@@ -107,7 +107,7 @@ const NavBar = () => {
             {navPageItems.map(({ title, pageToGo }) => (
               <li
                 key={title}
-                className="hover:text-Purple cursor-pointer"
+                className="hover:text-Green cursor-pointer"
                 onClick={() => navigate(pageToGo)}
               >
                 {title}
@@ -117,7 +117,7 @@ const NavBar = () => {
         </div>
 
         {/* Account and shpping btn */}
-        <div className="text-lg text-Black sm:flex items-center gap-x-4 hidden">
+        <div className="text-lg text-Black font-semibold sm:flex items-center gap-x-4 hidden">
           {authenticatedUser ? (
             <a
               className="flex items-center cursor-pointer gap-2"
@@ -127,20 +127,20 @@ const NavBar = () => {
             </a>
           ) : (
             <div className="flex gap-2">
-              <a
-                className="flex items-center cursor-pointer gap-2"
+              <button
+                className="button-alt flex items-center cursor-pointer gap-2"
                 onClick={handleOpenRegister}
               >
                 <FaRegUser />
                 signup
-              </a>
-              <a
-                className="flex items-center cursor-pointer gap-2"
+              </button>
+              <button
+                className="button-action flex items-center cursor-pointer"
                 onClick={handleOpenLogin}
               >
                 <PiSignInFill />
                 Login
-              </a>
+              </button>
             </div>
           )}
 
@@ -182,7 +182,7 @@ const NavBar = () => {
         />
       )}
 
-      <div className="w-full bg-blue-200">
+      <div className="w-full ">
         {/* Logo  */}
         <a href="/">
           <img src={Logo1} className="w-24" />
