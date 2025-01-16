@@ -4,7 +4,7 @@
 
 @layer components{
   .button{
-    @apply min-w-40 bg-green-400 hover:bg-green-600 px-6 py-2 text-white font-semibold rounded-lg
+    @apply min-w-40 bg-Green hover:bg-Green px-6 py-2 text-white font-semibold rounded-lg
   }
 
   /* .title{
@@ -16,19 +16,19 @@
   } */
 
   .h1{
-    @apply text-2xl font-semibold text-black
+    @apply text-2xl font-semibold text-Black
   }
   .h2{
-    @apply text-xl font-semibold text-black
+    @apply text-xl font-semibold text-Black
   }
   .h3{
-    @apply text-lg font-semibold text-black
+    @apply text-lg font-semibold text-Black
   }
   .h4{
-    @apply text-base font-semibold text-black
+    @apply text-base font-semibold text-Black
   }
   .h5{
-    @apply text-sm font-semibold text-black
+    @apply text-sm font-semibold text-Black
   }
 
   .inputField{

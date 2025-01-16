@@ -7,9 +7,10 @@ export default {
   theme: {
     extend: {
       colors:{
-        "Black": "#1E2832",
+        "Black": "#111212",
         "primaryBG":"#f3f2f7",
-        "Purple":"#871ff0"
+        "Purple":"#871ff0",
+        "Green":"#5fd957"
       },
       fontFamily:{
         "primary":['Roboto', 'sans-serif'],
