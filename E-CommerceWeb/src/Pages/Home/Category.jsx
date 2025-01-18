@@ -75,31 +75,36 @@ const Category = () => {
         </p>
         {/* Bigger image */}
         <div className="w-full md:w-1/2 flex justify-center items-center relative">
-          <Link to="/" className="relative w-full">
+          <Link
+            to="/"
+            className="group relative w-full overflow-hidden rounded-lg shadow-lg"
+          >
             <img
               src={mainImage.image}
               alt="category-image"
-              className="max-w-lg max-h-96 w-full hover:scale-105 transition-all duration-300 object-cover object-top"
+              className="w-full max-h-[500px] object-cover transition-transform duration-300 group-hover:scale-110"
             />
-            <p className="text-center absolute bottom-1">{mainImage.message}</p>
+            <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+              {mainImage.message}
+            </div>
           </Link>
         </div>
         {/* Sub images */}
-        <div className="w-full md:w-1/2 grid grid-cols-2 gap-2">
+        <div className="w-full md:w-1/2 grid grid-cols-2 gap-4">
           {subImages.map(({ id, image, message }) => (
             <Link
               to="/"
               key={id}
-              className="flex justify-center items-center relative"
+              className="group relative overflow-hidden rounded-lg shadow-md"
             >
               <img
                 src={image}
                 alt={`category${id}-image`}
-                className="max-w-xl max-h-64 w-full hover:scale-105 transition-all duration-300"
+                className="w-full h-44 md:h-48 object-cover transition-transform duration-300 group-hover:scale-110"
               />
-              <p className="text-center absolute bottom-1 bg-white bg-opacity-75 px-2 py-1 rounded">
+              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-3 text-white text-sm md:text-base translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                 {message}
-              </p>
+              </div>
             </Link>
           ))}
         </div>

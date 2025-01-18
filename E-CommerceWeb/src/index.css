@@ -8,11 +8,11 @@
   }
 
   .button-action{
-    @apply min-w-40 p-1 flex justify-center items-center  bg-Green border-2 border-gray-300 text-white rounded shadow-md hover:bg-white hover:text-gray-800 hover:border-2 hover:border-SkyBlue transition-colors
+    @apply min-w-28 p-1 flex justify-center items-center  bg-Green border-2 border-gray-300 text-white rounded shadow-md hover:bg-white hover:text-gray-800 hover:border-2 hover:border-SkyBlue transition-colors
   }
 
   .button-alt {
-    @apply min-w-28 px-4 py-2 font-bold bg-transparent border-2 border-SkyBlue text-Black rounded shadow-md hover:bg-Green hover:text-white hover:border-2 hover:border-gray-300 transition-colors;
+    @apply min-w-28 p-1 font-bold bg-transparent border-2 border-SkyBlue text-Black rounded shadow-md hover:bg-Green hover:text-white hover:border-2 hover:border-gray-300 transition-colors;
   }
   /* .title{
     @apply text-3xl font-semibold capitalize 

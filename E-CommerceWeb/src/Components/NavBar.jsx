@@ -132,7 +132,7 @@ const NavBar = () => {
                 onClick={handleOpenRegister}
               >
                 <FaRegUser />
-                signup
+                Sign Up
               </button>
               <button
                 className="button-action flex items-center cursor-pointer"
