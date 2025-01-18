@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaPlus, FaTimes } from "react-icons/fa";
 
-const ShopProductInfo = () => {
+const ShopProductInfo = ({ selectedProduct }) => {
   const [shopInfoToggle, setShopInfoToggle] = useState(false);
   return (
     <div className="border p-2 mb-6 rounded-lg cursor-pointer">
@@ -20,11 +20,24 @@ const ShopProductInfo = () => {
       <div className={`${shopInfoToggle ? "" : "hidden"} space-y-4 mt-4`}>
         <div className="w-[30%] grid grid-cols-2 grid-rows-5 ">
           <p className="font-semibold">Name:</p>
-          <p>T-Shirt</p>
+          <p>
+            {selectedProduct != null
+              ? selectedProduct.name
+              : "Product name here"}
+          </p>
           <p className="font-semibold">Brand:</p>
-          <p>Adidas</p>
+          <p>
+            {" "}
+            {selectedProduct != null
+              ? selectedProduct.brand
+              : "Brand name here"}
+          </p>
           <p className="font-semibold">Category:</p>
-          <p>Clothing</p>
+          <p>
+            {selectedProduct != null
+              ? selectedProduct.category.name
+              : "Product name here"}
+          </p>
           <p className="font-semibold">Activity:</p>
           <p>Sport</p>
           <p className="font-semibold">Gender:</p>

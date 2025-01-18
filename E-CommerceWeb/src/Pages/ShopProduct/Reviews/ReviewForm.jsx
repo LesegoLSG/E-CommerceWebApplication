@@ -21,7 +21,7 @@ const ReviewForm = ({ productId }) => {
     setIsDialog(false);
   };
 
-  const [review, setReview] = useState({
+  const [reviews, setReviews] = useState({
     rating: 0,
     name: "",
     summary: "",
@@ -33,7 +33,7 @@ const ReviewForm = ({ productId }) => {
   // Update the rating in the review state
   const handleRatingChange = (currentRating) => {
     setRating(currentRating);
-    setReview((prevState) => ({
+    setReviews((prevState) => ({
       ...prevState,
       rating: currentRating,
     }));
@@ -41,7 +41,7 @@ const ReviewForm = ({ productId }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setReview((prevState) => ({
+    setReviews((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -56,21 +56,32 @@ const ReviewForm = ({ productId }) => {
       return;
     } else {
       try {
+        // Save review to database.
         const response = await AxiosPrivateInstance.post(
-          `review/add/${productId}`,
-          { review }
+          `/review/add/${productId}`,
+          reviews
         );
+        // Display confirmation box (Dialog)
         if (response && response.data) {
           setIsDialog(true);
           setDialogMessage(response.data.message);
           setDialogType("success");
         }
+        // reset review form to it's default value
+        setReviews({
+          rating: 0,
+          name: "",
+          summary: "",
+          message: "",
+        });
+        setRating(0);
+        setHover(null);
       } catch (error) {
         console.log("error review:", error);
       }
     }
 
-    console.log("review:", review);
+    console.log("review:", reviews);
   };
 
   console.log("Rating: ", rating);
@@ -110,7 +121,7 @@ const ReviewForm = ({ productId }) => {
           <GoogleInput
             placeholder={"Name"}
             name="name"
-            value={review.name}
+            value={reviews.name}
             onChange={handleInputChange}
           />
         </div>
@@ -119,7 +130,7 @@ const ReviewForm = ({ productId }) => {
           <GoogleInput
             placeholder={"Summary"}
             name="summary"
-            value={review.summary}
+            value={reviews.summary}
             onChange={handleInputChange}
           />
         </div>
@@ -128,7 +139,7 @@ const ReviewForm = ({ productId }) => {
           <GoogleInputTextArea
             placeholder={"Review"}
             name="message"
-            value={review.message}
+            value={reviews.message}
             onChange={handleInputChange}
           />
         </div>

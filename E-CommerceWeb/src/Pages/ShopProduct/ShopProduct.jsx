@@ -70,9 +70,9 @@ const ShopProduct = () => {
             {/* Main Information component */}
             <ShopProductMainInfo selectedProduct={selectedProduct} />
             {/* Information Component */}
-            <ShopProductInfo />
+            <ShopProductInfo selectedProduct={selectedProduct} />
             {/* Details Component */}
-            <ShopProductDetails />
+            <ShopProductDetails selectedProduct={selectedProduct} />
             {/*Reviews*/}
             <ShopProductReviews selectedProduct={selectedProduct} id={id} />
           </div>

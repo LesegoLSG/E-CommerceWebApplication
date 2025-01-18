@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaPlus, FaTimes } from "react-icons/fa";
 
-const ShopProductDetails = () => {
+const ShopProductDetails = ({ selectedProduct }) => {
   const [shopDetailsToggle, setShopDetailsToggle] = useState(false);
   return (
     <div className="border p-2 mb-6 rounded-lg cursor-pointer">
@@ -20,6 +20,7 @@ const ShopProductDetails = () => {
       <div className={`${shopDetailsToggle ? "" : "hidden"} space-y-4 mt-4`}>
         <div className="space-y-4">
           <p>
+            {selectedProduct.description}
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia
             consequatur vitae dolores perspiciatis neque iure eveniet est
             tempore minus, deleniti fugiat deserunt, animi, quae magni! Qui odit
