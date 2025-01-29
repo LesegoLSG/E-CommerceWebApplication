@@ -45,7 +45,7 @@ const CustomerRegistration = () => {
     // Create registerObject without confirmPassword
     const { confirmPassword, ...registerObject } = formData;
 
-    //Sending an API
+    //Sending a request to post or add a user
     try {
       const response = await AxiosPublicInstance.post(
         "users/add",
@@ -59,8 +59,6 @@ const CustomerRegistration = () => {
         setError(error?.response?.data?.message);
       }
     }
-
-    // You can send this object to your API or handle it accordingly
   };
 
   const handleClose = (e) => {
