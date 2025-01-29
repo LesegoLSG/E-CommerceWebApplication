@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 
 import SimilarProducts from "./SimilarProducts";
@@ -16,6 +16,18 @@ const ShopProduct = () => {
   const { id } = useParams();
   const { products } = useProducts();
   const [selectedProduct, setSelectedProduct] = useState(null);
+
+  // Open review section and useRef for scrolling
+  const reviewFormRef = useRef(null);
+  const [openReviewSection, setOpenReviewSection] = useState(false);
+
+  // Scroll to review form on Click
+  const handleAddReviewClick = () => {
+    setOpenReviewSection(true);
+    if (reviewFormRef.current) {
+      reviewFormRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   // Define your backend's base URL here
   const backendBaseUrl = "http://localhost:9191";
@@ -68,13 +80,21 @@ const ShopProduct = () => {
           {/* Information Section */}
           <div className="w-full md:w-2/3 h-auto md:px-6 space-y-6">
             {/* Main Information component */}
-            <ShopProductMainInfo selectedProduct={selectedProduct} />
+            <ShopProductMainInfo
+              selectedProduct={selectedProduct}
+              onAddReviewClick={handleAddReviewClick}
+            />
             {/* Information Component */}
             <ShopProductInfo selectedProduct={selectedProduct} />
             {/* Details Component */}
             <ShopProductDetails selectedProduct={selectedProduct} />
             {/*Reviews*/}
-            <ShopProductReviews selectedProduct={selectedProduct} id={id} />
+            <ShopProductReviews
+              selectedProduct={selectedProduct}
+              id={id}
+              reviewFormRef={reviewFormRef}
+              openReviewSection={openReviewSection}
+            />
           </div>
         </div>
       </div>

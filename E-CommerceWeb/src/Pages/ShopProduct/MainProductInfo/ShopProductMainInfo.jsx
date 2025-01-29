@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
 import { FaHeart, FaShareAlt } from "react-icons/fa";
 
-const ShopProductMainInfo = ({ selectedProduct }) => {
+const ShopProductMainInfo = ({ selectedProduct, onAddReviewClick }) => {
   return (
     <div className="w-full space-y-3">
       {/* Product main info */}
@@ -21,7 +21,12 @@ const ShopProductMainInfo = ({ selectedProduct }) => {
 
         <p>{selectedProduct?.reviews?.length ?? 0} reviews</p>
 
-        <p className="font-semibold">Add Your Preview</p>
+        <p
+          className="font-semibold hover:underline cursor-pointer"
+          onClick={onAddReviewClick}
+        >
+          Add Your Preview
+        </p>
       </div>
       <div>
         <p className="h3">R{selectedProduct?.price ?? 0}</p>

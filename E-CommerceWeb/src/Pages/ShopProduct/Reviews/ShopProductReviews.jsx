@@ -1,18 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaPlus, FaTimes } from "react-icons/fa";
 import SingleReviewCard from "./SingleReviewCard";
 import ReviewForm from "./ReviewForm";
 
-const ShopProductReviews = ({ selectedProduct, id }) => {
-  const [shopReviewsToggle, setShopReviewsToggle] = useState(false);
+const ShopProductReviews = ({
+  selectedProduct,
+  id,
+  reviewFormRef,
+  openReviewSection,
+}) => {
+  const [shopReviewsToggle, setShopReviewsToggle] = useState(openReviewSection);
   const [reviewList, setReviewList] = useState(null);
 
+  // Set the review list only when the selectedProduct is available and has reviews
   useEffect(() => {
-    // Set the review list only when the selectedProduct is available and has reviews
     if (selectedProduct && selectedProduct.reviews) {
       setReviewList(selectedProduct.reviews);
     }
   }, [selectedProduct]); // This effect runs when selectedProduct changes
+
+  // Open the review section when triggered
+  useEffect(() => {
+    if (openReviewSection) {
+      setShopReviewsToggle(true);
+    }
+  }, [openReviewSection]);
 
   return (
     <div className="border p-2 mb-6 rounded-lg cursor-pointer">
@@ -44,7 +56,9 @@ const ShopProductReviews = ({ selectedProduct, id }) => {
           <p>View all/more</p>
         </div>
         {/* Review form */}
-        <ReviewForm productId={id} />
+        <div ref={reviewFormRef}>
+          <ReviewForm productId={id} />
+        </div>
       </div>
     </div>
   );
