@@ -29,7 +29,7 @@ const ShopProduct = () => {
     }
   };
 
-  // Define your backend's base URL here
+  //backend's base URL
   const backendBaseUrl = "http://localhost:9191";
 
   useEffect(() => {
@@ -46,6 +46,8 @@ const ShopProduct = () => {
   if (!selectedProduct) {
     return <p>Loading product...</p>; // Return a loading state or a message if the product isn't found yet
   }
+
+  console.log("bu:", backendBaseUrl);
 
   // Ensure images array exists before passing it to Gallery
   const imageUrls = selectedProduct.images

@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
 import { FaHeart, FaShareAlt } from "react-icons/fa";
+import { useCart } from "../../../Context/CartItemsContext";
 
 const ShopProductMainInfo = ({ selectedProduct, onAddReviewClick }) => {
+  const { cartItems, addToCart, updateQuantity } = useCart();
+  const [quantity, setQuantity] = useState(1);
+
+  // Increase quantity
+  const increaseQuantity = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  // Decrease quantity
+  const descreaseQuantity = () => {
+    if (quantity > 1) setQuantity((prev) => prev - 1);
+  };
+
+  // Add cart item to the actual cart
+  const handleAddToCart = () => {
+    const productId = selectedProduct.id;
+    addToCart(productId, quantity);
+  };
+
   return (
     <div className="w-full space-y-3">
       {/* Product main info */}
@@ -41,11 +61,23 @@ const ShopProductMainInfo = ({ selectedProduct, onAddReviewClick }) => {
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="flex gap-x-2 items-center">
-          <FaCircleMinus size={26} className="cursor-pointer" />
-          1
-          <FaCirclePlus size={26} className="cursor-pointer" />
+          <FaCircleMinus
+            size={26}
+            className="cursor-pointer"
+            onClick={descreaseQuantity}
+          />
+          {quantity}
+          <FaCirclePlus
+            size={26}
+            className="cursor-pointer"
+            onClick={increaseQuantity}
+          />
         </div>
-        <button className="button">Add to card</button>
+        <button className="button" onClick={handleAddToCart}>
+          Add to card
+        </button>
+        <p>Quantity {quantity}</p>
+        {/* <p>cartItems: {cartItems}</p> */}
       </div>
       {/* Wishlist & Share */}
       <div className="w-full flex items-center gap-x-4">

@@ -6,6 +6,7 @@ import { useModal } from "./Context/ModalContext";
 import CustomerRegistrationModal from "./Components/Registration/CustomerRegistrationModal";
 import Login from "./Components/Login/Login";
 import Footer from "./Components/Footer/Footer";
+import ScrollToTop from "./Components/Reusables/ScrollToTop/ScrollToTop";
 function App() {
   const { isCartOpen, isRegisterOpen, isLoginOpen } = useModal();
 
@@ -14,6 +15,7 @@ function App() {
   return (
     <>
       <NavBar />
+      <ScrollToTop />
       <Outlet />
       {isCartOpen && <Cart />}
       {isRegisterOpen && <CustomerRegistrationModal />}

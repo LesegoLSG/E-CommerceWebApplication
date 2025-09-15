@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { MdAddCircle } from "react-icons/md";
-import { useCart } from "../../Context/CartContext";
+// import { useCart } from "../../Context/CartContext";
 
 const ProductCard = ({ productItem }) => {
-  const { addToCart } = useCart();
+  // const { addToCart } = useCart();
 
   const finalProductPrice = () => {
     if (productItem.sale != 0 && productItem.sale != null) {
@@ -44,7 +44,7 @@ const ProductCard = ({ productItem }) => {
             <span className="group-hover:hidden">+</span>
             <span
               className="hidden group-hover:block cursor-pointer"
-              onClick={() => addToCart(productItem)}
+              // onClick={() => addToCart(productItem)}
             >
               Add To Cart
             </span>

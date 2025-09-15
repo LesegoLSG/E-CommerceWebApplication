@@ -9,7 +9,7 @@ import Checkout from "./Pages/Checkout/Checkout.jsx";
 import { ModalProvider } from "./Context/ModalContext.jsx";
 import OrderConfirmation from "./Pages/OrderPages/OrderConfirmation.jsx";
 import { ProductsProvider } from "./Context/ProductContext.jsx";
-import { CartProvider } from "./Context/CartContext.jsx";
+import { CartProvider } from "./Context/CartItemsContext.jsx";
 import ContactUs from "./Pages/Contact/ContactUs.jsx";
 import { LoadingProvider } from "./Context/LoadingContext.jsx";
 import { UserProvider } from "./Authentication/AuthUserContext/AuthenticatedUserContext.jsx";
